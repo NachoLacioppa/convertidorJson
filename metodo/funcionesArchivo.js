@@ -85,7 +85,6 @@ function borrarArchivo(){
         throw new Error('METODO - funcionesArchivo - leerContenidoArchivo: ' + error.message);
     }
 
-   
 }
 
 module.exports = {
