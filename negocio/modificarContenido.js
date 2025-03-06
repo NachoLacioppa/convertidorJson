@@ -1,27 +1,37 @@
+const { bancoID, cantidadFacturas } = require('../config/config')
 const { convertirJson } = require('../negocio/convertirContenido');
-const { guardarContentinoArchivo, borrarArchivo } = require('../metodo/funcionesArchivo')
-const modeloBase = require('../config/modeloJson.json');
+const { guardarContentinoArchivo, borrarArchivo } = require('../metodo/funcionesArchivo');
 
 function modificarJson() {
     try {
         const resultadosConvertidos = convertirJson();
-        const nuevoJson = [];
+        let objetoModificado = [];
 
         resultadosConvertidos.forEach(element1 => {
             element1.forEach(element2 => {
-                const nuevoModelo = JSON.parse(JSON.stringify(modeloBase));
-
-                nuevoModelo.puertaA.val1 = element2.puerta1.val1;
-                nuevoModelo.puertaB.val2 = element2.puerta1.val2;
-
-                nuevoJson.push(nuevoModelo);
+                //falta banco y cantidad
+                let molde = {
+                    banco: bancoID,
+                    cantidad: cantidadFacturas,
+                    factura: {
+                        idFactura: {
+                            cuitEmisor: element2.idFactura.cuitEmisor
+                        },
+                        cuitComprador: element2.cuitComprador,
+                        cbuComprador: element2.cbuComprador,
+                        cbuEmisor: element2.idFactura.cbuEmisor,
+                        fechaVencimientoPago: element2.fechaVencimientoPago,
+                        saldoAceptado: element2.saldoAceptado,
+                    }
+                }
+                objetoModificado.push(molde)
             });
         });
 
-        if(guardarContentinoArchivo(nuevoJson) == true){
-            console.log('NEGOCIO - modificarContenido - modificarJson: Se borraron los archivos en la carpeta IN')
-            borrarArchivo();
-            return nuevoJson;
+        if(guardarContentinoArchivo(objetoModificado) == true){
+            if(borrarArchivo() === true){
+                return objetoModificado;
+            }
         }
         else{
             console.log('NEGOCIO - modificarContenido - modificarJson: NO SE GUARDO EL JSON')

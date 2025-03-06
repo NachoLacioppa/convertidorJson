@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const util = require('util');
 const { fechaHora } = require('../config/config')
 
 function obtenerArchivosDeDirectorio(directorio) {
@@ -25,18 +26,16 @@ function leerContenidoArchivo(rutaArchivo) {
 }
 
 function guardarContentinoArchivo(data) {
-    const flag = true;
+    let flag = true;
     try {
         const directorio = path.join(__dirname, '..', 'datos', 'out'); 
         const rutaArchivo = path.join(directorio, `resultado_${fechaHora}.txt`); 
-
-
 
         if (!fs.existsSync(directorio)) {
             fs.mkdirSync(directorio, { recursive: true });
         }
 
-        const contenido = JSON.stringify(data, null, 2);
+        const contenido = util.inspect(data, { depth: null, colors: false });
         fs.writeFile(rutaArchivo, contenido, (err) => {
             if (err) {
                 flag = false
@@ -47,30 +46,29 @@ function guardarContentinoArchivo(data) {
         });
 
         return flag
-
+        
     } catch (error) {
         flag = false
         console.log('METODO - funcionesArchivo - guardarContentinoArchivo: ' + error.message);
     }
-
 }
 
-//TERMINAR ESTA FUNCION
 function borrarArchivo(){
-    const flag = true
+    let flag = true
     try {
         const directorio = path.join(__dirname, '..', 'datos', 'in')
         if (fs.existsSync(directorio)) {
             fs.readdir(directorio, (err, archivos) => {
                 if (err) {
+                    flag = false
                     console.error('METODO - funcionesArchivo - borrarArchivo - Error al leer la carpeta:', err);
-                    return;
                 }
     
                 archivos.forEach(archivo => {
                     const rutaArchivo = path.join(directorio, archivo);
                     fs.unlink(rutaArchivo, (err) => {
                         if (err) {
+                            flag = false
                             console.error(`METODO - funcionesArchivo - borrarArchivo - Error al borrar ${archivo}:`, err);
                         } else {
                             console.log(`METODO - funcionesArchivo - borrarArchivo - Archivo eliminado: ${archivo}`);
@@ -79,10 +77,13 @@ function borrarArchivo(){
                 });
             });
         } else {
+            flag = false
             console.log('METODO - funcionesArchivo - borrarArchivo - La carpeta datos/out no existe.');
+            
         }
+        return flag
     } catch (error) {
-        throw new Error('METODO - funcionesArchivo - leerContenidoArchivo: ' + error.message);
+        throw new Error('METODO - funcionesArchivo - borrarArchivo: ' + error.message);
     }
 
 }

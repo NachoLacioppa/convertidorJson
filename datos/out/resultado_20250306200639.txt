@@ -1,0 +1,38 @@
+[
+  {
+    banco: '017',
+    cantidad: 5,
+    factura: {
+      idFactura: { cuitEmisor: '20387888595' },
+      cuitComprador: '203855567425',
+      cbuComprador: "'095832290358290358",
+      cbuEmisor: '129784190284',
+      fechaVencimientoPago: '2025-01-18',
+      saldoAceptado: 10
+    }
+  },
+  {
+    banco: '017',
+    cantidad: 5,
+    factura: {
+      idFactura: { cuitEmisor: '9999999' },
+      cuitComprador: '77777777',
+      cbuComprador: "'6666",
+      cbuEmisor: '8888888',
+      fechaVencimientoPago: '2027-01-18',
+      saldoAceptado: 54
+    }
+  },
+  {
+    banco: '017',
+    cantidad: 5,
+    factura: {
+      idFactura: { cuitEmisor: '5555' },
+      cuitComprador: '3333',
+      cbuComprador: '22222',
+      cbuEmisor: '4444',
+      fechaVencimientoPago: '2025-01-18',
+      saldoAceptado: 154745
+    }
+  }
+]
