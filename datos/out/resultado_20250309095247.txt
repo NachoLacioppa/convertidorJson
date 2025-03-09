@@ -17,7 +17,7 @@
     factura: {
       idFactura: { cuitEmisor: '9999999' },
       cuitComprador: '77777777',
-      cbuComprador: "'6666",
+      cbuComprador: '6666',
       cbuEmisor: '8888888',
       fechaVencimientoPago: '2027-01-18',
       saldoAceptado: 54

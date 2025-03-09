@@ -25,7 +25,7 @@ function leerContenidoArchivo(rutaArchivo) {
     }
 }
 
-function guardarContentinoArchivo(data) {
+function guardarContenidoArchivo(data) {
     let flag = true;
     try {
         const directorio = path.join(__dirname, '..', 'datos', 'out'); 
@@ -39,9 +39,9 @@ function guardarContentinoArchivo(data) {
         fs.writeFile(rutaArchivo, contenido, (err) => {
             if (err) {
                 flag = false
-                console.log('METODO - funcionesArchivo - guardarContentinoArchivo (dentro del try): ' + err);
+                console.log('METODO - funcionesArchivo - guardarContenidoArchivo (dentro del try): ' + err);
             } else {
-                console.log(`METODO - funcionesArchivo - guardarContentinoArchivo - Archivo guardado correctamente en: ${rutaArchivo}`);
+                console.log(`METODO - funcionesArchivo - guardarContenidoArchivo - Archivo guardado correctamente en: ${rutaArchivo}`);
             }
         });
 
@@ -49,7 +49,7 @@ function guardarContentinoArchivo(data) {
         
     } catch (error) {
         flag = false
-        console.log('METODO - funcionesArchivo - guardarContentinoArchivo: ' + error.message);
+        console.log('METODO - funcionesArchivo - guardarContenidoArchivo: ' + error.message);
     }
 }
 
@@ -91,6 +91,6 @@ function borrarArchivo(){
 module.exports = {
     obtenerArchivosDeDirectorio,
     leerContenidoArchivo,
-    guardarContentinoArchivo,
+    guardarContenidoArchivo,
     borrarArchivo
 };

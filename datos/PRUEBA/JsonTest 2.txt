@@ -6,7 +6,7 @@
         "cbuEmisor": "8888888"
     },
     "cuitComprador": "77777777",
-    "cbuComprador": "'6666"
+    "cbuComprador": "6666"
 },
 {
     "saldoAceptado": 154745,

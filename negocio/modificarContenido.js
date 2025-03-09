@@ -1,6 +1,6 @@
 const { bancoID, cantidadFacturas } = require('../config/config')
 const { convertirJson } = require('../negocio/convertirContenido');
-const { guardarContentinoArchivo, borrarArchivo } = require('../metodo/funcionesArchivo');
+const { guardarContenidoArchivo, borrarArchivo } = require('../metodo/funcionesArchivo');
 
 function modificarJson() {
     try {
@@ -9,7 +9,6 @@ function modificarJson() {
 
         resultadosConvertidos.forEach(element1 => {
             element1.forEach(element2 => {
-                //falta banco y cantidad
                 let molde = {
                     banco: bancoID,
                     cantidad: cantidadFacturas,
@@ -28,7 +27,7 @@ function modificarJson() {
             });
         });
 
-        if(guardarContentinoArchivo(objetoModificado) == true){
+        if(guardarContenidoArchivo(objetoModificado) == true){
             if(borrarArchivo() === true){
                 return objetoModificado;
             }
