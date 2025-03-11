@@ -1,0 +1,15 @@
+{
+    "saldoAceptado": 10,
+    "fechaVencimientoPago": "2025-01-18",
+    "idFactura": {
+        "cuitEmisor": "20387888595",
+        "cbuEmisor": "129784190284"
+    },
+    "cuitComprador": "203855567425",
+    "cbuComprador": "'095832290358290358"
+}
+
+
+
+
+
